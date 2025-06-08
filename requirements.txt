@@ -1,0 +1,10 @@
+sqlalchemy
+scikit-learn
+pandas
+numpy
+scikit-learn
+postgres
+joblib
+clearml
+wandb
+mlflow
