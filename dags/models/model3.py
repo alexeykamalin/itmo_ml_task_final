@@ -4,7 +4,11 @@ from airflow.decorators import task
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, f1_score, confusion_matrix, roc_auc_score
 import wandb
+from dotenv import load_dotenv
+
 import os
+
+load_dotenv()
 
 config = {
     "random_state": 42,
@@ -51,7 +55,8 @@ def all_in_one() -> None:
     cm = confusion_matrix(y_true=y_test, y_pred=y_pred)
     roc_auc = roc_auc_score(y_true=y_test, y_score=y_proba, multi_class='ovo')  # или 'ovr'
     
-    wandb.login(key="18522e7cc4d1f9edb53ed19c35dcfd0133b77451")
+    wandb.login(key=os.getenv("WANDB_API_KEY"))
+
     # Инициализируем задачу wandb
     task = wandb.init(
         project="Project", 
