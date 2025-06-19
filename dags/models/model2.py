@@ -4,15 +4,14 @@ from airflow.decorators import task
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, f1_score, confusion_matrix, roc_auc_score
 from clearml import Task
+from dotenv import load_dotenv
 
 import os
 
-# Установка переменных окружения (альтернатива конфигурационному файлу)
-os.environ['CLEARML_API_HOST'] = 'https://api.clear.ml'
-os.environ['CLEARML_WEB_HOST'] = 'https://app.clear.ml'
-os.environ['CLEARML_FILES_HOST'] = 'https://files.clear.ml'
-os.environ['CLEARML_API_ACCESS_KEY'] = 'GGJ7LME47RFKTI2YZ9Z5XBQGRF5CXL'
-os.environ['CLEARML_API_SECRET_KEY'] = 'gK1iU2Ez9wvMpSE8COwWRWvN7LqObNCwRQLp1htN8gtzaxnzcTiQNI_lmclruougT6Y'
+load_dotenv()
+
+assert os.getenv("CLEARML_API_ACCESS_KEY"), "API key not set!"
+assert os.getenv("CLEARML_API_SECRET_KEY"), "API secret not set!"
 
 config = {
     "random_state": 42,
