@@ -15,7 +15,7 @@ def evaluate_model(name, y_true, y_pred):
     print("------")
 
 
-df = pd.read_csv("dataset.csv")
+df = pd.read_csv("super_new_dataset.csv", sep=';')
 
 print("Пропуски:\n", df.isnull().sum())
 
